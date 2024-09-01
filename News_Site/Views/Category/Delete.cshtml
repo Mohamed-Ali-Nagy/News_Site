@@ -1,0 +1,26 @@
+﻿@model News_Site.ViewModels.CategoryVMs.CategoryVM
+
+@{
+    ViewData["Title"] = "Confirm Delete";
+}
+
+<h2>Confirm Delete</h2>
+
+<div>
+    <h4>Are you sure you want to delete this category?</h4>
+    <h3>@Model.Name</h3>
+    <hr />
+    <div>
+        <form asp-action="Delete" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+            <input type="hidden" asp-for="ID" />
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,43 @@
+﻿@model News_Site.ViewModels.NewsVMs.NewsDetailsVM
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm rounded mb-4">
+                <div class="card-header bg-info text-white text-center">
+                    <h5 class="card-title mb-0">@Model.Title</h5>
+                </div>
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="/@Model.ImageURL" class="img-fluid rounded-start" alt="News Image" /> 
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <p class="card-text mb-2"><strong>Body:</strong> @Model.Body</p> 
+                            <p class="card-text mb-2"><strong>Date:</strong> @Model.NewsDate</p>
+                            <p class="card-text mb-2"><strong>Category:</strong> @Model.CategoryName</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                @if (User.IsInRole("Admin"))
+                {
+                    <div>
+                        <a asp-controller="News" asp-action="Delete" asp-route-Id="@Model.ID" class="btn btn-danger btn-sm mr-2" onclick="confirm('Do you want to delete this News Item!!')">Delete</a>
+                        <a asp-controller="News" asp-action="Update" asp-route-Id="@Model.ID" class="btn btn-secondary btn-sm">Update</a>
+                    </div>
+                }
+
+                <div>
+                    <a asp-action="Index" class="btn btn-primary btn-sm">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
